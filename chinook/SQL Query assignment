@@ -1,0 +1,24 @@
+(The following 'create table' codes are for sol_1)
+CREATE TABLE albumtrack AS SELECT * FROM Album INNER JOIN Track ON Album.AlbumId = Track.AlbumId;
+CREATE TABLE Playlists AS SELECT * FROM Playlist INNER JOIN PlaylistTrack on Playlist.PlaylistId = PLaylistTrack.PlaylistId;
+CREATE TABLE AlbumPlaylist AS SELECT * FROM albumtrack INNER JOIN Playlists ON Playlists.TrackId = albumtrack.TrackId;
+create view sol_1 as
+SELECT DISTINCT Title FROM AlbumPlaylist WHERE PlaylistId = 16;
+
+(The following 'create table' codes are for sol_2)
+CREATE TABLE TheTwoInvoices AS SELECT * FROM Invoice INNER JOIN InvoiceLine ON Invoice.InvoiceId = InvoiceLine.InvoiceId;
+CREATE TABLE TrackGenre AS SELECT * FROM Genre INNER JOIN Track ON Genre.GenreId = Track.GenreId;
+CREATE TABLE InvoiceTrack AS SELECT * FROM TheTwoInvoices INNER JOIN TrackGenre ON TheTwoInvoices.TrackId = TrackGenre.GenreId;
+create view sol_2 as
+SELECT SUM(Total) FROM InvoiceTrack WHERE Name = 'TV Shows';
+
+create view sol_3 as
+SELECT DISTINCT Country FROM Customer WHERE Customer.SupportRepId = 3;
+
+create view sol_4 as
+SELECT COUNT(*) FROM Customer WHERE Customer.Company IS NULL;
+
+(The following 'create table' code is for sol_5)
+CREATE TABLE CustomerInvoice AS SELECT * FROM Customer INNER JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId;
+create view sol_5 as
+SELECT Avg(Total) FROM CustomerInvoice WHERE Email LIKE '%gmail%';
