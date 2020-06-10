@@ -11,7 +11,7 @@ conn = sqlite3.connect('keyclub.sqlite')
 cur = conn.cursor()
 
 if args.view:
-    for row in cur.execute(f"SELECT * FROM {args.view}"):
+    for row in cur.execute(f'SELECT * FROM {args.view}'):
         print(row)
 else:
     for row in cur.execute("SELECT name FROM sqlite_master WHERE type='view'"):
