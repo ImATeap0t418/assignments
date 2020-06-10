@@ -15,4 +15,4 @@ if args.view:
         print(row)
 else:
     for row in cur.execute("SELECT name FROM sqlite_master WHERE type='view'"):
-        print(row)
+        print(row[0])
